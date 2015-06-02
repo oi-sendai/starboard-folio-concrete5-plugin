@@ -19,14 +19,15 @@ class Controller extends BlockController
     protected $btCacheBlockOutputForRegisteredUsers = false;
     protected $btIgnorePageThemeGridFrameworkContainer = true;
 
+
     public function getBlockTypeDescription()
     {
-        return t("Display your images and captions in an attractive slideshow format.");
+        return t("A full width slideshow for a photography portfolio.");
     }
 
     public function getBlockTypeName()
     {
-        return t("Image Slider");
+        return t("Starboard Folio");
     }
 
     public function getSearchableContent()
@@ -65,37 +66,29 @@ class Controller extends BlockController
         $this->edit();
     }
 
-    // public function registerViewAssets()
+    // I think this is a singleton
+    // public function on_start()
     // {
-    //     $this->requireAsset('javascript', 'jquery');
+    //     $al = \Concrete\Core\Asset\AssetList::getInstance();
+    //     $al->register(
+    //         'javascript', 'jssorslider', 'blocks/starboard_folio/js/jssor.slider.mini.js',
+    //         array('version' => '1.0.0', 'minify' => false, 'combine' => true)
+    //     );
+    //     $al->registerGroup('starboardfolio', array(
+    //         // array('javascript', 'jquery'),
+    //         // array('javascript', 'jssorslider')
+    //     ));
+    //     // Finally, we require the asset from within a registerViewAssets() method in our block controller:
+    //     // Router::register(
+    //     //     '/my/ajax/controller/animal/{favorite}', 
+    //     //     'Application\Block\StarboardFolio::getdata'
+    //     // );
     // }
-
-    public function on_start()
-    {
-        $al = \Concrete\Core\Asset\AssetList::getInstance();
-        $al->register(
-            'javascript', 'starboardfoliojs', 'blocks/starboard_folio/js/starboard-folio.js',
-            array('version' => '1.0.0', 'minify' => false, 'combine' => true)
-        );
-        // $al->register(
-        //     'css', 'mediaelement', 'blocks/audio/mediaelement/mediaelementplayer.min.css',
-        //     array('version' => '2.16.3', 'minify' => false, 'combine' => true)
-        // );
-        // Next, we group the asset into a single asset group.
-
-        $al->registerGroup('starboardfolio', array(
-            // array('css', 'mediaelement'),
-            array('javascript', 'jquery'),
-            array('javascript', 'starboardfoliojs')
-        ));
-
-        // Finally, we require the asset from within a registerViewAssets() method in our block controller:
-    }
 
 
     public function registerViewAssets()
     {
-        $this->requireAsset('starboardfolio');
+        // $this->requireAsset('starboardfolio');
     }
 
     public function getEntries()
